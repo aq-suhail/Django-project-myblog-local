@@ -1,9 +1,9 @@
-{% extends "../base/base.html" %}
+{% extends 'base/base.html' %}
 {% block title %} Suhail's Blog {% endblock %}
 
 {% block content %}
 
-<h2>Hello my name is Suhail aka RealOneTechy</h2>
-<p>Welcome to my blog where I share insights on technology, programming, and more!</p>
+{% include 'base/navbar.html' %}
+
 
 {% endblock %}
