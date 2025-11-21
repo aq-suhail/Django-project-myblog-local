@@ -21,6 +21,17 @@ html, body {
     font-weight: 500 !important;
 }
 
+.fs-12
+{
+    font-size: 0.75rem !important;}
+}
+
+.fs-14{
+    font-size: 0.8575rem !important;
+}
+
+
+
 .infscroll h1{
     font-size: 22px;
     letter-spacing: -0.6px;
