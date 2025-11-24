@@ -24,6 +24,12 @@
         line-height: 32px;
         letter-spacing: 0,2px;
     }
+    .img-float-center{
+        float: center;
+        margin: 40%;
+        max-width: 50%;
+        height: 30%;
+    }
 </style>
 
 <div class="blogger center mx-auto" style="max-width: 683px;">
@@ -35,10 +41,9 @@
     <div class="post">
         {{ post.content | markdown | safe }}
     </div>
-    
-
-    
-
+    <div class="img-cover" style="background-image:url('{{ post.image.url }}') ;"> 
+         <img src="{{ post.image.url }}" class="img-fluid float-end img-responsive" alt="{{ post.title }}">
+    </div>
 </div>
 {% endblock %}
 
@@ -58,7 +63,7 @@
                     <h1 class="mb-1 fs-6 p-0 text-dark fs-bold"> {{post.title | truncatechars:80}}</h1>
                 </div>
                 <div class="col-3">
-                    <img src="https://www.hillsandwills.com/blog_images/89554.jpg" class="img-fluid float-end">
+                        <img src="{{ post.image.url }}" class="img-fluid float-end img-responsive" alt="{{ post.title }}">
                 </div>
             </div>
         </div>

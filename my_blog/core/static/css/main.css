@@ -47,3 +47,33 @@ html, body {
         font-size: 0.8125rem;
     }
 }
+
+.img-cover{
+    width: 100%;
+    height: 320px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-bottom: 20px;
+
+}
+
+.thumb {
+  width: 100%;
+  aspect-ratio: 4/3; /* modern browsers */
+  overflow: hidden;
+  border-radius: 6px;
+}
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Responsive image helper */
+.img-responsive {
+    max-width: 100%;
+    height: 43;
+    display: block;
+}
