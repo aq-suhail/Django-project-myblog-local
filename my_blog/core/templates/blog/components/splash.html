@@ -1,16 +1,72 @@
+{# blog/components/splash.html #}
 <div class="border-bottom border-1 border-dark">
-    <div class="container py-md-5">
-        <div class="row align-items-center py-md-5">
-            <div class="col-12 col-md-6 py-1 py-md-5 text-center text-md-start">
-                <h1 class="display-4 fw-bold py-0.5 fw-500"> To the Blog </h1>
-                <p class="fs-5 fw-light">
-                Insights, stories, and ideas shared with passion.
-                </p>
-                <button type="button" class="btn btn-dark rounded-pill fw-500 fs-5 px-4">Start Reading</button>
-            </div>
-            <div class="col">
-             
-            </div>
+  <div class="container py-md-5">
+    <div class="row align-items-center py-md-5">
+      <div class="col-12 col-md-6 py-1 py-md-5 text-center text-md-start">
+        <h1 class="display-4 fw-bold py-0.5 fw-500">To the Blog</h1>
+        <p class="fs-5 fw-light">Insights, stories, and ideas shared with passion.</p>
+
+        <!-- Carousel -->
+        <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+          <div class="carousel-inner">
+
+            {% comment %}
+              Loop through the queryset 'imageslides' passed from the view.
+              Each slide becomes a separate .carousel-item.
+            {% endcomment %}
+
+            {% for slide in imageslides %}
+              <div class="carousel-item {% if forloop.first %}active{% endif %} img-cover"
+                   {% if slide.slide_image %} style="background-image: url('{{ slide.slide_image.url }}');" {% endif %}>
+                {# Optional inner <img> for accessibility / fallback #}
+                {% if slide.slide_image %}
+                  <img src="{{ slide.slide_image.url }}" class="d-none" alt="Slide {{ slide.pk }}">
+                {% endif %}
+              </div>
+            {% empty %}
+              <!-- fallback if no slides found -->
+              <div class="carousel-item active img-cover" style="background-image: url('/static/img/default-slide.jpg');">
+                <img src="/static/img/default-slide.jpg" class="d-none" alt="default slide">
+              </div>
+            {% endfor %}
+
+          </div>
+
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
         </div>
-    </div>    
+        <!-- /Carousel -->
+
+        <button type="button" class="btn btn-dark rounded-pill fw-500 fs-5 px-4 mt-4">Start Reading</button>
+      </div>
+
+      <div class="col">
+        <!-- empty column (keeps layout) -->
+      </div>
+    </div>
+  </div>
 </div>
+
+<style>
+  /* ensure carousel items have a stable height and cover the container */
+  .img-cover {
+    height: 300px;               /* adjust height for your design (use min-height for responsiveness) */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;      /* cover scales image to fill while keeping aspect ratio */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (min-width: 768px) {
+    .img-cover { height: 380px; }  /* larger on medium+ screens */
+  }
+</style>
