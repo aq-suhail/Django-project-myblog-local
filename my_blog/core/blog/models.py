@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from taggit.managers import TaggableManager 
 from django.urls import reverse
+from django.utils import timezone
 
 # Create your models here.
 
@@ -32,3 +33,12 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+    
+class Imageslides(models.Model):
+    
+    slide_image = models.ImageField(upload_to='./slide_images/', blank=True)
+    status = models.CharField(max_length=10, choices=(('draft', 'Draft'), ('published', 'Published')), default='draft')
+    count = models.IntegerField(default=0)
+    published_at = models.DateTimeField(default=timezone.now)
+
+   
