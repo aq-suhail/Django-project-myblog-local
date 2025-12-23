@@ -26,11 +26,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG') == 'True'
-ALLOWED_HOSTS = ['*']
+DEBUG = os.environ.get("DEBUG") == "True"
+ALLOWED_HOSTS = [
+	"127.0.0.0",
+	"localhost",
+	"98.130.135.10",
+	"aqsuhailblog.com",
+	"aqsuhailblog.com",
+    	"www.aqsuhailblog.com",
+]
 
 
 # Application definition
@@ -45,6 +52,7 @@ INSTALLED_APPS = [
     'core.blog',
     'django_htmx',
     "taggit",
+    "storages",
 ]
 
 MIDDLEWARE = [
@@ -134,9 +142,36 @@ USE_TZ = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'core', 'static')]
-STATIC_URL = '/static/'
+
+AWS_STORAGE_BUCKET_NAME = "suhail-blog-static-prod"
+AWS_S3_REGION_NAME = "ap-south-2"
+
+AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_S3_REGION_NAME}.amazonaws.com"
+
+AWS_S3_SIGNATURE_VERSION = "s3v4"
+AWS_S3_ADDRESSING_STYLE = "virtual"
+AWS_DEFAULT_ACL = None
+
+STORAGES = {
+    "default": {
+        "BACKEND": "core.blog.storage_backends.MediaStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "core.blog.storage_backends.StaticStorage",
+    },
+}
+
+
+
+
+# static files
+
+STATIC_URL = "https://suhail-blog-static-prod.s3.ap-south-2.amazonaws.com/static/"
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-MEDIA_URL = '/media/'
+# media files
+
+MEDIA_URL = "https://suhail-blog-static-prod.s3.ap-south-2.amazonaws.com/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+

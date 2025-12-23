@@ -25,5 +25,11 @@ urlpatterns = [
 ]
 
 if settings.DEBUG:
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS[0])
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+	# If you really want to serve static from S3 in debug, you don't need this line at all.
+    	# Remove STATICFILES_DIRS[0] usage to avoid IndexError.
+   	# You can safely comment it out or delete it:
+    	#urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS[0])
+    	#urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+	# For media (if any local), you can keep this:
+	urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
