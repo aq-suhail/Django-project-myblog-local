@@ -30,14 +30,14 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG") == "True"
-ALLOWED_HOSTS = [
-	"127.0.0.0",
-	"localhost",
-	"98.130.135.10",
-	"aqsuhailblog.com",
-	"aqsuhailblog.com",
-    	"www.aqsuhailblog.com",
-]
+ALLOWED_HOSTS = ["*"]
+	#"127.0.0.0",
+	#"localhost",
+	#"98.130.135.10",
+	#"aqsuhailblog.com",
+	#"aqsuhailblog.com",
+    #	"www.aqsuhailblog.com",
+
 
 
 # Application definition
@@ -95,8 +95,12 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': os.environ.get('MYSQL_DATABASE'),
+        'USER': os.environ.get('MYSQL_USER'),
+        'PASSWORD': os.environ.get('MYSQL_PASSWORD'),
+        'HOST': os.environ.get('MYSQL_HOST'),
+        'PORT': '3306',
     }
 }
 
