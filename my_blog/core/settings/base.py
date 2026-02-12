@@ -170,12 +170,18 @@ STORAGES = {
 
 # static files
 
-STATIC_URL = "https://suhail-blog-static-prod.s3.ap-south-2.amazonaws.com/static/"
+STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+#STATIC_URL = "https://suhail-blog-static-prod.s3.ap-south-2.amazonaws.com/static/"
+#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # media files
 
-MEDIA_URL = "https://suhail-blog-static-prod.s3.ap-south-2.amazonaws.com/media/"
+MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+#MEDIA_URL = "https://suhail-blog-static-prod.s3.ap-south-2.amazonaws.com/media/"
+#MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
