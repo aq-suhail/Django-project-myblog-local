@@ -19,11 +19,11 @@ jobs:
 
     - name: Build Docker image
       run: |
-        docker build -t ${{ secrets.DOCKER_USERNAME }}/aqsuhail/suhailblog:tagname .
+        docker build -t ${{ secrets.DOCKER_USERNAME }}/suhailblog:latest .
 
     - name: Push Docker image
       run: |
-        docker push ${{ secrets.DOCKER_USERNAME }}/aqsuhail/suhailblog:tagname
+        docker push ${{ secrets.DOCKER_USERNAME }}/suhailblog:latest
 
     - name: Deploy to EC2
       uses: appleboy/ssh-action@master
